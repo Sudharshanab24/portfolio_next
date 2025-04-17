@@ -2,3 +2,22 @@
 @tailwind components;
 @tailwind utilities;
 
+/* This will hide the scrollbar completely */
+.hide-scrollbar {
+    overflow: auto; /* Allow scrolling when necessary */
+  }
+  
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none; /* Hide the scrollbar in Webkit-based browsers (Chrome, Safari) */
+  }
+  
+  .hide-scrollbar {
+    scrollbar-width: none; /* Hide the scrollbar in Firefox */
+    -ms-overflow-style: none; /* Hide the scrollbar in Internet Explorer */
+  }
+  
+  /* Ensure smooth scrolling when the content overflows */
+  .hide-scrollbar {
+    scroll-behavior: smooth;
+  }
+  

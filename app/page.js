@@ -10,8 +10,8 @@ export default function Home() {
     setShowTools(prev => !prev);
   };
 
-  const skills = ["C", "Java", "Python", "JavaScript", "HTML", "CSS", "React", "Node.js", "Flask", "Next.js", "MongoDB", "MySQL", "Linux","Tailwind CSS","CNN models"];
-  const tools = ["Git", "GitHub", "VS Code", "Figma", "Postman", "Thunder Client","Google colab","Jupyter"];
+  const skills = ["C", "Java", "Python", "JavaScript", "HTML", "CSS", "React", "Node.js", "Flask", "Next.js", "MongoDB", "MySQL", "Linux","Tailwind CSS","CNN models","C++"];
+  const tools = ["Git", "GitHub", "VS Code", "Figma", "Postman", "Thunder Client","Google colab","Jupyter","Leetcode","Hackerrank","GeeksFor Geeks"];
 
   const projects = [
     {
@@ -217,17 +217,17 @@ export default function Home() {
       </span>
     </div>
 
-    {/* Skills/Tools Grid */}
    {/* Skills/Tools Grid */}
-<motion.div 
-  className="max-w-md mx-auto p-4 border-2 border-gray-600 rounded-lg bg-gray-700 shadow-lg overflow-y-auto"
+   <motion.div 
+  className="max-w-md mx-auto p-4 border-2 border-gray-600 rounded-lg bg-gray-700 shadow-lg overflow-hidden"  // Set to hidden initially
   initial={{ opacity: 0, y: -50 }}
   whileInView={{ opacity: 1, y: 0 }}
   transition={{ duration: 1 }}
   viewport={{ once: false }}
   style={{ minHeight: "300px", maxHeight: "300px" }} // Ensures consistent box height
 >
-  <div className="flex flex-wrap gap-2 justify-center">
+  {/* Hover Effect to Enable Overflow */}
+  <div className="flex flex-wrap gap-2 justify-center overflow-hidden">
     {(showTools ? tools : skills).map((item, index) => (
       <motion.div
         key={index}
@@ -243,58 +243,121 @@ export default function Home() {
 
 
 
+
   </motion.div>
 </motion.section>
 
 <motion.section
-      className="flex items-center justify-center h-screen"
-      initial={{ opacity: 0 }}
-      whileInView={{ opacity: 1 }}
-      transition={{ duration: 1 }}
-      viewport={{ once: false }}
+  className="flex flex-col md:flex-row items-center justify-center h-screen gap-12"
+  initial={{ opacity: 0 }}
+  whileInView={{ opacity: 1 }}
+  transition={{ duration: 1 }}
+  viewport={{ once: false }}
+>
+  {/* Achievement Box */}
+  <motion.div
+    className="bg-gray-800 p-6 rounded-lg shadow-lg border-2 border-gray-500 text-white w-[90%] md:w-[45%]"
+    initial={{ opacity: 0, y: -100 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    transition={{ duration: 1 }}
+    viewport={{ once: false }}
+  >
+    <h2 className="text-3xl font-bold mb-4 text-center">My Achievements</h2>
+    <ul className="list-disc list-inside text-lg space-y-2 text-left">
+      <li><strong>Finalist at SIH'24</strong> for developing an AI-driven crop disease prediction and management system.</li>
+      <li><strong>Winner of HACKBUZZ'24</strong>, a 24-hour hackathon, for developing a Job Suggestion Portal.</li>
+      <li><strong>3rd place</strong> for a project presentation on an AI-driven crop disease detection app.</li>
+      <li><strong>Participated in KEC HACKATHON'25</strong>, developed a Virtual Agronomist in a 30-hour hackathon.</li>
+      <li>Presented a research paper on <strong>Anti-HIV treatment using nanorobots</strong> at <strong>GCT, Coimbatore</strong>.</li>
+    </ul>
+  </motion.div>
+
+  {/* Trophy Image */}
+  <motion.div
+  className="w-full md:w-[45%] flex items-center justify-center"
+  animate={{
+    x: [-10, 10, -10], // Bouncing left and right
+  }}
+  transition={{
+    duration: 2,
+    repeat: Infinity,
+    repeatType: "mirror",
+    ease: "easeInOut",
+  }}
+  whileTap={{ scale: 0.9 }}        // Shrinks on click
+  whileHover={{ scale: 1.05 }}     // Slightly enlarges on hover
+  whileFocus={{ scale: 1.1 }}      // Enlarges more on focus
+  style={{ willChange: "transform" }}
+  initial={{ opacity: 0, y: -25 }}
+  whileInView={{ opacity: 1, y: 0 }}
+  viewport={{ once: false }}
+>
+  <img
+    src="3ebdd15e67d74a01cc71050dca09dd6b.png"
+    alt="Trophy"
+    className="w-60 h-60"
+    style={{
+      width: "240px",
+      height: "240px",
+      imageRendering: "auto",
+    }}
+  />
+</motion.div>
+
+</motion.section>
+<motion.section
+  id="contact"
+  className="min-h-screen flex flex-col items-center justify-center bg-[#0f172a] text-white px-4 py-12"
+  initial={{ opacity: 0, y: 100 }}
+  whileInView={{ opacity: 1, y: 0 }}
+  transition={{ duration: 1 }}
+  viewport={{ once: false }}
+>
+  <h2 className="text-4xl font-bold mb-8 text-center">Get In Touch</h2>
+  <form
+    className="w-full max-w-xl bg-gray-800 p-8 rounded-lg shadow-lg space-y-6"
+    onSubmit={(e) => {
+      e.preventDefault();
+      alert("Thanks for reaching out! (You can integrate emailjs or backend here)");
+    }}
+  >
+    <div>
+      <label className="block text-sm font-semibold mb-2" htmlFor="name">Name</label>
+      <input
+        type="text"
+        id="name"
+        required
+        className="w-full px-4 py-2 rounded bg-gray-700 border border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
+      />
+    </div>
+    <div>
+      <label className="block text-sm font-semibold mb-2" htmlFor="email">Email</label>
+      <input
+        type="email"
+        id="email"
+        required
+        className="w-full px-4 py-2 rounded bg-gray-700 border border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
+      />
+    </div>
+    <div>
+      <label className="block text-sm font-semibold mb-2" htmlFor="message">Message</label>
+      <textarea
+        id="message"
+        rows="4"
+        required
+        className="w-full px-4 py-2 rounded bg-gray-700 border border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
+      />
+    </div>
+    <button
+      type="submit"
+      className="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-2 rounded transition duration-200"
     >
-      {/* Left Side - Achievement Box (Write Content Directly Here) */}
-      <motion.div
-        className="w-1/2 bg-gray-800 p-6 rounded-lg shadow-lg border-2 border-gray-500 text-white text-center"
-        initial={{ opacity: 0, y: -50 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1 }}
-        viewport={{ once: false }}
-      >
-        <h2 className="text-3xl font-bold mb-4">My Achievements</h2>
-        <p className="text-lg leading-relaxed">
-  • Finalist at **SIH'24** for developing an AI-driven crop disease prediction and management system<br />
-  • Winner of **HACKBUZZ'24**, a 24-hour hackathon, for developing a Job Suggestion Portal. <br />
-  • Secured **3rd place** for a project presentation on an AI-driven crop disease detection app. <br />
-  • Participated in **KEC HACKATHON'25**, a 30-hour hackathon, and developed a Virtual Agronomist. <br />
-  • Presented a research paper on **Anti-HIV treatment using nanorobots** at **GCT, Coimbatore**. <br />
-</p>
+      Send Message
+    </button>
+  </form>
+</motion.section>
 
-      </motion.div>
 
-      {/* Right Side - Trophy with Fireworks */}
-      <div className="w-1/2 flex justify-center relative">
-        {/* Fireworks Animation - Placed Higher */}
-        <motion.div
-          className="absolute -top-28"
-          initial={{ opacity: 0, scale: 0.5 }}
-          animate={{ opacity: [0, 1, 0], scale: [0.5, 1.5, 2] }}
-          transition={{
-            repeat: Infinity,
-            duration: 0.5,
-            ease: "easeOut",
-          }}
-        >
-        </motion.div>
-
-        {/* Trophy - Static and Bigger */}
-        <img
-          src="3ebdd15e67d74a01cc71050dca09dd6b.png"
-          alt="Trophy"
-          className="w-60 h-60" // Increased size
-        />
-      </div>
-    </motion.section>
       
     </motion.div>
  
